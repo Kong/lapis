@@ -104,7 +104,7 @@ http {
     location / {
       default_type text/html;
       content_by_lua '
-        require("lapis").serve("app")
+        require("kong-lapis").serve("app")
       ';
     }
 

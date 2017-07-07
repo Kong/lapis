@@ -1,9 +1,9 @@
 
-lapis = require "lapis"
-csrf = require "lapis.csrf"
+lapis = require "kong-lapis"
+csrf = require "kong-lapis.csrf"
 
-import Model from require "lapis.db.model"
-import respond_to, capture_errors from require "lapis.application"
+import Model from require "kong-lapis.db.model"
+import respond_to, capture_errors from require "kong-lapis.application"
 
 class Users extends Model
   url_params: =>

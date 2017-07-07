@@ -1,12 +1,12 @@
 require "spec.helpers" -- for one_of
 
-db = require "lapis.db.postgres"
-schema = require "lapis.db.postgres.schema"
+db = require "kong-lapis.db.postgres"
+schema = require "kong-lapis.db.postgres.schema"
 
 value_table = { hello: "world", age: 34 }
 
 tests = {
-  -- lapis.db.postgres
+  -- kong-lapis.db.postgres
   {
     -> db.escape_identifier "dad"
     '"dad"'
@@ -176,7 +176,7 @@ tests = {
   }
 
 
-  -- lapis.db.postgres.schema
+  -- kong-lapis.db.postgres.schema
 
   {
     -> schema.add_column "hello", "dads", schema.types.integer
@@ -502,7 +502,7 @@ END]]
 
 
 local old_query_fn
-describe "lapis.db.postgres", ->
+describe "kong-lapis.db.postgres", ->
   setup ->
     old_query_fn = db.set_backend "raw", (q) -> q
 

@@ -41,7 +41,7 @@ template by name like so:
 
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 
 local app = lapis.Application()
 app:enable("etlua")
@@ -54,7 +54,7 @@ return app
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   @enable "etlua"
@@ -73,7 +73,7 @@ will be used as the name of the template:
 
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 
 local app = lapis.Application()
 app:enable("etlua")
@@ -86,7 +86,7 @@ return app
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   @enable "etlua"

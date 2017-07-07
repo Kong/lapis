@@ -1,17 +1,17 @@
 
 -- without nginx the library uses crypto
 unless (pcall require, "crypto") or (pcall require, "openssl")
-  describe "lapis.session", ->
+  describe "kong-lapis.session", ->
     it "should have luacrypto or luaossl", ->
       pending "luacrypto or luaossl is required for session test"
   return
 
-import auto_table from require "lapis.util"
+import auto_table from require "kong-lapis.util"
 
-session = require "lapis.session"
+session = require "kong-lapis.session"
 
-describe "lapis.session", ->
-  config = require"lapis.config".get!
+describe "kong-lapis.session", ->
+  config = require"kong-lapis.config".get!
 
   local req
 

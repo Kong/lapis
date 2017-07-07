@@ -9,9 +9,9 @@ Lapis comes with a set of validators for working with external inputs. Here's a
 quick example:
 
 ```lua
-local lapis = require("lapis")
-local app_helpers = require("lapis.application")
-local validate = require("lapis.validate")
+local lapis = require("kong-lapis")
+local app_helpers = require("kong-lapis.application")
+local validate = require("kong-lapis.validate")
 
 local capture_errors = app_helpers.capture_errors
 
@@ -36,8 +36,8 @@ return app
 ```
 
 ```moon
-import capture_errors from require "lapis.application"
-import assert_valid from require "lapis.validate"
+import capture_errors from require "kong-lapis.application"
+import assert_valid from require "kong-lapis.validate"
 
 class App extends lapis.Application
   "/create-user": capture_errors =>
@@ -89,14 +89,14 @@ validation functions as demonstrated in the example above.
 Custom validators can be defined like so:
 
 ```lua
-local validate = require("lapis.validate")
+local validate = require("kong-lapis.validate")
 
 validate.validate_functions.integer_greater_than = function(input, min)
   local num = tonumber(input)
   return num and num > min, "%s must be greater than " .. min
 end
 
-local app_helpers = require("lapis.application")
+local app_helpers = require("kong-lapis.application")
 local capture_errors = app_helpers.capture_errors
 
 local app = lapis.Application()
@@ -109,13 +109,13 @@ end))
 ```
 
 ```moon
-import validate_functions, assert_valid from require "lapis.validate"
+import validate_functions, assert_valid from require "kong-lapis.validate"
 
 validate_functions.integer_greater_than = (input, min) ->
   num = tonumber input
   num and num > min, "%s must be greater than #{min}"
 
-import capture_errors from require "lapis.application"
+import capture_errors from require "kong-lapis.application"
 
 class App extends lapis.Application
   "/": capture_errors =>
@@ -129,11 +129,11 @@ class App extends lapis.Application
 In addition to `assert_valid` there is one more useful validation function:
 
 ```lua
-local validate = require("lapis.validate").validate
+local validate = require("kong-lapis.validate").validate
 ```
 
 ```moon
-import validate from require "lapis.validate"
+import validate from require "kong-lapis.validate"
 ```
 
 * `validate(object, validation)` -- takes the same exact arguments as

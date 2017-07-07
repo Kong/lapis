@@ -1,5 +1,5 @@
-local lapis = require("lapis.application")
-local mock_request = require("lapis.spec.request").mock_request
+local lapis = require("kong-lapis.application")
+local mock_request = require("kong-lapis.spec.request").mock_request
 
 local app = lapis.Application()
 

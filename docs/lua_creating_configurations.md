@@ -15,7 +15,7 @@ the more specific configuration declarations:
 
 ```lua
 -- config.moon
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 
 config({"development", "production"}, {
   host = "example.com",

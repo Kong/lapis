@@ -1,9 +1,9 @@
 
-functions = require "lapis.util.functions"
+functions = require "kong-lapis.util.functions"
 
 moon = require "moon"
 
-describe "lapis.util.functions", ->
+describe "kong-lapis.util.functions", ->
   upvalue = "hello"
   fn = -> "the upvalue #{upvalue}"
   other_fn = -> "what up, upvalue #{upvalue}"

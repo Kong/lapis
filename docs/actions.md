@@ -31,7 +31,7 @@ assign a name to them. The simplest routes have no parameters though:
 
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
 
 app:match("/", function(self) end)
@@ -40,7 +40,7 @@ app:match("/users/all", function(self) end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   "/": =>
@@ -65,7 +65,7 @@ app:match("/post/:post_id/:post_name", function(self) end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   "/page/:page": => print @params.page
@@ -93,7 +93,7 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   "/browse/*": =>
@@ -158,7 +158,7 @@ class="for_lua">Every method on the application that defines a new route has a
 second form that takes the name of the route as the first argument:</span>
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
 
 app:match("index", "/", function(self)
@@ -171,7 +171,7 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class extends lapis.Application
   [index: "/"]: =>
@@ -198,8 +198,8 @@ verb. Lapis comes with some helpers to make writing these actions simple.
 perform when the action receives that verb.
 
 ```lua
-local lapis = require("lapis")
-local respond_to = require("lapis.application").respond_to
+local lapis = require("kong-lapis")
+local respond_to = require("kong-lapis.application").respond_to
 local app = lapis.Application()
 
 app:match("create_account", "/create-account", respond_to({
@@ -214,8 +214,8 @@ app:match("create_account", "/create-account", respond_to({
 ```
 
 ```moon
-lapis = require "lapis"
-import respond_to from require "lapis.application"
+lapis = require "kong-lapis"
+import respond_to from require "kong-lapis.application"
 
 class App extends lapis.Application
   [create_account: "/create-account"]: respond_to {
@@ -235,8 +235,8 @@ class="for_lua">`self:write()`</span> then the rest of the action will not get
 run.
 
 ```lua
-local lapis = require("lapis")
-local respond_to = require("lapis.application").respond_to
+local lapis = require("kong-lapis")
+local respond_to = require("kong-lapis.application").respond_to
 local app = lapis.Application()
 
 app:match("edit_user", "/edit-user/:id", respond_to({
@@ -257,8 +257,8 @@ app:match("edit_user", "/edit-user/:id", respond_to({
 ```
 
 ```moon
-lapis = require "lapis"
-import respond_to from require "lapis.application"
+lapis = require "kong-lapis"
+import respond_to from require "kong-lapis.application"
 
 class App extends lapis.Application
   "/edit_user/:id": respond_to {
@@ -320,7 +320,7 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   @before_filter =>
@@ -356,7 +356,7 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   @before_filter =>
@@ -513,7 +513,7 @@ highly recommended to change this from the default.
 
 ```lua
 -- config.lua
-local config = require("lapis.config").config
+local config = require("kong-lapis.config").config
 
 config("development", {
   session_name = "my_app_session",
@@ -523,7 +523,7 @@ config("development", {
 
 ```moon
 -- config.moon
-import config from require "lapis.config"
+import config from require "kong-lapis.config"
 
 config "development", ->
   session_name "my_app_session"
@@ -980,7 +980,7 @@ expected errors are discussed in the [Exception Handling
 guide]($root/reference/exception_handling.html)
 
 Lapis comes with an error handler pre-defined that extracts information about
-the error and renders the template `"lapis.views.error"`. This error page
+the error and renders the template `"kong-lapis.views.error"`. This error page
 contains a stack trace and the error message.
 
 If you want to have your own error handling logic you can override the method

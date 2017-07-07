@@ -1,7 +1,7 @@
 
-import Flow from require "lapis.flow"
+import Flow from require "kong-lapis.flow"
 
-describe "lapis.flow", ->
+describe "kong-lapis.flow", ->
   local base_object
   base_object = {
     msg: "hello"

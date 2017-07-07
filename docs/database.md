@@ -17,7 +17,7 @@ connections to the server are automatically pooled for optimal performance.
 
 Depending on which database you use, a different library is used:
 
-[pgmoon](https://github.com/leafo/pgmoon) is the driver used to run
+[pgmoon-mashape](https://github.com/Mashape/pgmoon) is the driver used to run
 PostgreSQL queries. It has the advantage of being able to be used within
 OpenResty's cosocket API in addition to on the command line using LuaSocket's
 synchronous API.
@@ -39,7 +39,7 @@ file.
 
 ```lua
 -- config.lua
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 config("development", {
   postgres = {
     host = "127.0.0.1",
@@ -52,7 +52,7 @@ config("development", {
 
 ```moon
 -- config.moon
-import config from require "lapis.config"
+import config from require "kong-lapis.config"
 config "development", ->
   postgres ->
     host "127.0.0.1"
@@ -73,7 +73,7 @@ block:
 
 ```lua
 -- config.lua
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 config("development", {
   mysql = {
     host = "127.0.0.1",
@@ -86,7 +86,7 @@ config("development", {
 
 ```moon
 -- config.moon
-import config from require "lapis.config"
+import config from require "kong-lapis.config"
 config "development", ->
   mysql ->
     host "127.0.0.1"
@@ -111,8 +111,8 @@ easily.
 Here's an example of the raw query interface:
 
 ```lua
-local lapis = require("lapis")
-local db = require("lapis.db")
+local lapis = require("kong-lapis")
+local db = require("kong-lapis.db")
 
 local app = lapis.Application()
 
@@ -125,8 +125,8 @@ return app
 ```
 
 ```moon
-lapis = require "lapis"
-db = require "lapis.db"
+lapis = require "kong-lapis"
+db = require "kong-lapis.db"
 
 class extends lapis.Application
   "/": =>
@@ -137,8 +137,8 @@ class extends lapis.Application
 And the same query represented with the `Model` class:
 
 ```lua
-local lapis = require("lapis")
-local Model = require("lapis.db.model").Model
+local lapis = require("kong-lapis")
+local Model = require("kong-lapis.db.model").Model
 
 local app = lapis.Application()
 
@@ -153,8 +153,8 @@ return app
 ```
 
 ```moon
-lapis = require "lapis"
-import Model from require "lapis.db.model"
+lapis = require "kong-lapis"
+import Model from require "kong-lapis.db.model"
 
 class MyTable extends Model
 
@@ -171,11 +171,11 @@ each query as it happens.
 ## Query Interface
 
 ```lua
-local db = require("lapis.db")
+local db = require("kong-lapis.db")
 ```
 
 ```moon
-db = require "lapis.db"
+db = require "kong-lapis.db"
 ```
 
 The `db` module provides the following functions:
@@ -542,7 +542,7 @@ db.update "the_table", {
 ## Database Schemas
 
 Lapis comes with a collection of tools for creating your database schema inside
-of the `lapis.db.schema` module.
+of the `kong-lapis.db.schema` module.
 
 ### Creating and Dropping Tables
 
@@ -552,7 +552,7 @@ The first argument to `create_table` is the name of the table and the second
 argument is an array table that describes the table.
 
 ```lua
-local schema = require("lapis.db.schema")
+local schema = require("kong-lapis.db.schema")
 
 local types = schema.types
 
@@ -565,7 +565,7 @@ schema.create_table("users", {
 ```
 
 ```moon
-schema = require "lapis.db.schema"
+schema = require "kong-lapis.db.schema"
 
 import create_table, types from schema
 
@@ -785,7 +785,7 @@ Here are all the default values:
 
 
 ```lua
-local types = require("lapis.db.schema").types
+local types = require("kong-lapis.db.schema").types
 
 print(types.boolean)       --> boolean NOT NULL DEFAULT FALSE
 print(types.date)          --> date NOT NULL
@@ -801,7 +801,7 @@ print(types.varchar)       --> character varying(255) NOT NULL
 ```
 
 ```moon
-import types from require "lapis.db.schema"
+import types from require "kong-lapis.db.schema"
 
 types.boolean       --> boolean NOT NULL DEFAULT FALSE
 types.date          --> date NOT NULL
@@ -861,7 +861,7 @@ function in the table is the name of the migration. You are free to name the
 migrations anything but it's suggested to give them Unix timestamps as names:
 
 ```lua
-local schema = require("lapis.db.schema")
+local schema = require("kong-lapis.db.schema")
 
 return {
   [1368686109] = function()
@@ -875,7 +875,7 @@ return {
 ```
 
 ```moon
-import add_column, create_index, types from require "lapis.db.schema"
+import add_column, create_index, types from require "kong-lapis.db.schema"
 
 {
   [1368686109]: =>
@@ -908,7 +908,7 @@ Let's create this file with a single migration as an example.
 ```lua
 -- migrations.lua
 
-local schema = require("lapis.db.schema")
+local schema = require("kong-lapis.db.schema")
 local types = schema.types
 
 return {
@@ -927,7 +927,7 @@ return {
 ```moon
 -- migrations.moon
 
-import create_table, types from require "lapis.db.schema"
+import create_table, types from require "kong-lapis.db.schema"
 
 {
   [1]: =>
@@ -952,12 +952,12 @@ Read more about [the migrate command](command_line.html#command-reference/lapis-
 We can manually create the migrations table using the following code:
 
 ```lua
-local migrations = require("lapis.db.migrations")
+local migrations = require("kong-lapis.db.migrations")
 migrations.create_migrations_table()
 ```
 
 ```moon
-migrations = require "lapis.db.migrations"
+migrations = require "kong-lapis.db.migrations"
 migrations.create_migrations_table!
 ```
 
@@ -973,12 +973,12 @@ CREATE TABLE IF NOT EXISTS "lapis_migrations" (
 Then we can manually run migrations with the following code:
 
 ```lua
-local migrations = require("lapis.db.migrations")
+local migrations = require("kong-lapis.db.migrations")
 migrations.run_migrations(require("migrations"))
 ```
 
 ```moon
-import run_migrations from require "lapis.db.migrations"
+import run_migrations from require "kong-lapis.db.migrations"
 run_migrations require "migrations"
 ```
 

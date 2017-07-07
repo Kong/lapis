@@ -8,22 +8,22 @@ test:
 	busted spec_openresty
 
 local: build
-	luarocks make --force --local lapis-dev-1.rockspec
+	luarocks make --force --local
 
 global: build
-	sudo luarocks make lapis-dev-1.rockspec
+	sudo luarocks make kong-lapis-1.5.2-1.rockspec
 
 build:
-	moonc lapis
+	moonc kong-lapis
 	moonc spec_openresty/s2
 	moonc spec_mysql/models.moon
 
 watch: build
-	moonc -w lapis
+	moonc -w kong-lapis
 
 lint:
 	moonc lint_config.moon
-	moonc -l $$(find lapis | grep moon$$)
+	moonc -l $$(find kong-lapis | grep moon$$)
 
 test_db:
 	-dropdb -U postgres lapis_test
@@ -34,4 +34,4 @@ mysql_test_db:
 	echo 'create database lapis_test' | mysql -u root
 
 clean:
-	rm $$(find lapis/ | grep \.lua$$)
+	rm $$(find kong-lapis/ | grep \.lua$$)

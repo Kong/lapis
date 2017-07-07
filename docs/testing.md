@@ -29,16 +29,16 @@ In these examples we'll define the application in the same file as the tests
 for simplicity.
 
 A request can be mocked using the `mock_request` function defined in
-`lapis.spec.request`:
+`kong-lapis.spec.request`:
 
 ```lua
-local mock_request = require("lapis.spec.request").mock_request
+local mock_request = require("kong-lapis.spec.request").mock_request
 
 local status, body, headers = mock_request(app, url, options)
 ```
 
 ```moon
-import mock_request from require "lapis.spec.request"
+import mock_request from require "kong-lapis.spec.request"
 
 status, body, headers = mock_request(app, url, options)
 ```
@@ -47,9 +47,9 @@ For example, to test a basic application with
 [Busted](http://olivinelabs.com/busted/) we could do:
 
 ```lua
-local lapis = require("lapis.application")
-local mock_request = require("lapis.spec.request").mock_request
-local use_test_env = require("lapis.spec").use_test_env
+local lapis = require("kong-lapis.application")
+local mock_request = require("kong-lapis.spec.request").mock_request
+local use_test_env = require("kong-lapis.spec").use_test_env
 
 local app = lapis.Application()
 
@@ -69,10 +69,10 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
-import mock_request from require "lapis.spec.request"
-import use_test_env from require "lapis.spec"
+import mock_request from require "kong-lapis.spec.request"
+import use_test_env from require "kong-lapis.spec"
 
 class App extends lapis.Application
   "/hello": => "welcome to my page"
@@ -134,7 +134,7 @@ class="for_lua">`config.lua`</span>:
 > setting up a database on the [Database guide]($root/reference/configuration.html).
 
 ```lua
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 
 -- other configuration ...
 
@@ -149,7 +149,7 @@ config("test", {
 
 ```moon
 -- config.moon
-config = require "lapis.config"
+config = require "kong-lapis.config"
 
 -- other configuration ...
 
@@ -169,7 +169,7 @@ and teardown function that sets and restores the environment.
 
 
 ```lua
-local use_test_env = require("lapis.spec").use_test_env
+local use_test_env = require("kong-lapis.spec").use_test_env
 
 describe("my site", function()
   use_test_env()
@@ -180,7 +180,7 @@ end)
 
 
 ```moon
-import use_test_env from require "lapis.spec"
+import use_test_env from require "kong-lapis.spec"
 
 describe "my_site", ->
   use_test_env!
@@ -209,7 +209,7 @@ Instead of using the `use_test_env` function from above, we'll call the
 
 
 ```lua
-local use_test_server = require("lapis.spec").use_test_server
+local use_test_server = require("kong-lapis.spec").use_test_server
 
 describe("my site", function()
   use_test_server()
@@ -219,7 +219,7 @@ end)
 
 
 ```moon
-import use_test_server from require "lapis.spec"
+import use_test_server from require "kong-lapis.spec"
 
 describe "my_site", ->
   use_test_server!
@@ -237,12 +237,12 @@ already have open.
 ### `request(path, options={})`
 
 To make HTTP request to the test server you can use the helper function
-`request` found in `"lapis.spec.server"`. For example we might write a test to
+`request` found in `"kong-lapis.spec.server"`. For example we might write a test to
 make sure `/` loads without errors:
 
 ```lua
-local request = require("lapis.spec.server").request
-local use_test_server = require("lapis.spec").use_test_server
+local request = require("kong-lapis.spec.server").request
+local use_test_server = require("kong-lapis.spec").use_test_server
 
 describe("my site", function()
   use_test_server()
@@ -255,8 +255,8 @@ end)
 ```
 
 ```moon
-import use_test_server from require "lapis.spec"
-import request from require "lapis.spec.server"
+import use_test_server from require "kong-lapis.spec"
+import request from require "kong-lapis.spec.server"
 
 describe "my_site", ->
   use_test_server!

@@ -1,4 +1,4 @@
-config = require "lapis.config"
+config = require "kong-lapis.config"
 
 config("test", {
   mysql = {

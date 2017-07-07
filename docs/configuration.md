@@ -30,7 +30,7 @@ create it.
 > configuration is available.
 
 ```lua
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 
 config("development", {
   port = 8080
@@ -46,7 +46,7 @@ config("production", {
 
 ```moon
 -- config.moon
-config = require "lapis.config"
+config = require "kong-lapis.config"
 
 config "development", ->
   port 8080
@@ -59,7 +59,7 @@ config "production", ->
 
 ```
 
-We use the configuration helpers provided in `"lapis.config"` to create our
+We use the configuration helpers provided in `"kong-lapis.config"` to create our
 configurations. This defines a domain specific language for setting variables.
 In the example above we define two configurations, and set the ports for each
 of them.
@@ -113,13 +113,13 @@ The configuration is also made available in the application. We can get access
 to the configuration table like so:
 
 ```lua
-local config = require("lapis.config").get()
+local config = require("kong-lapis.config").get()
 print(config.port) -- shows the current port
 ```
 
 
 ```moon
-config = require("lapis.config").get!
+config = require("kong-lapis.config").get!
 print config.port -- shows the current port
 ```
 
@@ -230,11 +230,11 @@ request:
 
 
 ```lua
-local lapis = require("lapis")
-local after_dispatch = require("lapis.nginx.context").after_dispatch
-local to_json = require("lapis.util").to_json
+local lapis = require("kong-lapis")
+local after_dispatch = require("kong-lapis.nginx.context").after_dispatch
+local to_json = require("kong-lapis.util").to_json
 
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 
 config("development", {
   measure_performance = true
@@ -257,11 +257,11 @@ return app
 
 
 ```moon
-lapis = require "lapis"
-import after_dispatch from require "lapis.nginx.context"
-import to_json from require "lapis.util"
+lapis = require "kong-lapis"
+import after_dispatch from require "kong-lapis.nginx.context"
+import to_json from require "kong-lapis.util"
 
-config = require "lapis.config"
+config = require "kong-lapis.config"
 config "development", ->
   measure_performance true
 

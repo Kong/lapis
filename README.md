@@ -4,6 +4,8 @@ A web framework for Lua/[MoonScript][1].
 
 [![Build Status](https://travis-ci.org/leafo/lapis.svg?branch=master)](https://travis-ci.org/leafo/lapis)
 
+> Temporary fork, please do not use. See Changelog section.
+
 Lapis is production ready, use it on your next huge project.
 
 ### <http://leafo.net/lapis/>
@@ -39,6 +41,11 @@ Likewise, for MySQL tests, create a database called `lapis_test`. Ensure the
 ```bash
 busted spec_mysql
 ```
+
+# Changelog
+  		  
+* 1.5.2 — 2017-07-07 — [Mashape fork] Renamed to `kong-lapis`,
+  changed `pgmoon` to `pgmoon-mashape`. 
 
 ## License (MIT)
 

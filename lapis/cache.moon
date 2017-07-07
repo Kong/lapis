@@ -1,1 +1,0 @@
-require "lapis.nginx.cache"

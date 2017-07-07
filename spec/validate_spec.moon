@@ -1,5 +1,5 @@
 
-import validate from require "lapis.validate"
+import validate from require "kong-lapis.validate"
 
 o = {
   age: ""
@@ -95,12 +95,12 @@ tests = {
 }
 
 
-describe "lapis.validate", ->
+describe "kong-lapis.validate", ->
   for {input, output} in *tests
     it "should match", ->
       errors = validate o, input
       assert.same errors, output
-  
+
   it "should get key with error", ->
     errors = validate o, {
       { "age", exists: true }

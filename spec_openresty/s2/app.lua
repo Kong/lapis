@@ -1,5 +1,5 @@
-local lapis = require("lapis")
-local db = require("lapis.db")
+local lapis = require("kong-lapis")
+local db = require("kong-lapis.db")
 local Users, Posts, Likes
 do
   local _obj_0 = require("spec_mysql.models")

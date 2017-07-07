@@ -1,16 +1,16 @@
 local Model, enum
 do
-  local _obj_0 = require("lapis.db.mysql.model")
+  local _obj_0 = require("kong-lapis.db.mysql.model")
   Model, enum = _obj_0.Model, _obj_0.enum
 end
 local types, create_table
 do
-  local _obj_0 = require("lapis.db.mysql.schema")
+  local _obj_0 = require("kong-lapis.db.mysql.schema")
   types, create_table = _obj_0.types, _obj_0.create_table
 end
 local drop_tables, truncate_tables
 do
-  local _obj_0 = require("lapis.spec.db")
+  local _obj_0 = require("kong-lapis.spec.db")
   drop_tables, truncate_tables = _obj_0.drop_tables, _obj_0.truncate_tables
 end
 local Users

@@ -19,7 +19,7 @@ the request headers. They are normalized so you don't have to be concerned
 about capitalization.
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
 
 app:match("/", function(self)
@@ -28,7 +28,7 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   "/": =>
@@ -43,7 +43,7 @@ There are two ways to write headers. In these examples we set the
 You can return a headers field (or pass it to `write`) from an action:
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
 
 app:match("/", function(self)
@@ -57,7 +57,7 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   "/": =>
@@ -72,7 +72,7 @@ Alternatively, the `res` field of the `self` has a `headers` field that lets
 you set headers.
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
 
 app:match("/", function(self)
@@ -82,7 +82,7 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   "/": =>
@@ -98,7 +98,7 @@ Either manually set the header as described above, or use the `content_type`
 option of the `write` method, or action return value:
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
 
 app:match("/", function(self)
@@ -107,7 +107,7 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   "/": =>
@@ -120,7 +120,7 @@ class App extends lapis.Application
 Use the `json` option of the `write` method, or the action's return value:
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
 
 app:match("/", function(self)
@@ -134,7 +134,7 @@ end)
 ```
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   "/": =>
@@ -153,7 +153,7 @@ json encoded request body by using the `json_params` action decorator function.
 The values are placed into `params`.
 
 ```lua
-local json_params = require("lapis.application").json_params
+local json_params = require("kong-lapis.application").json_params
 
 app:match("/json", json_params(function(self)
   return self.params.value
@@ -161,8 +161,8 @@ end))
 ```
 
 ```moon
-lapis = require "lapis"
-import json_params from require "lapis.application"
+lapis = require "kong-lapis"
+import json_params from require "kong-lapis.application"
 
 class App extends lapis.Application
   "/": json_params =>
@@ -188,9 +188,9 @@ different code depending on the HTTP method.
 > available
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
-local respond_to = require("lapis.application").respond_to
+local respond_to = require("kong-lapis.application").respond_to
 
 app:match("/", respond_to({
   -- do common setup
@@ -214,8 +214,8 @@ app:match("/", respond_to({
 ```
 
 ```moon
-lapis = require "lapis"
-import respond_to from require "lapis.application"
+lapis = require "kong-lapis"
+import respond_to from require "kong-lapis.application"
 
 class App extends lapis.Application
   "/login": respond_to {
@@ -250,7 +250,7 @@ prevent this from happening by overriding the `handle_error` method on your
 application:
 
 ```lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
 
 function app:handle_error(err, trace)
@@ -259,8 +259,8 @@ end
 ```
 
 ```moon
-lapis = require "lapis"
-import respond_to from require "lapis.application"
+lapis = require "kong-lapis"
+import respond_to from require "kong-lapis.application"
 
 class App extends lapis.Application
   handle_error: (err, trace) =>

@@ -1,12 +1,12 @@
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
-mock_shared = require "lapis.spec.shared"
-import assert_request from require "lapis.spec.request"
+mock_shared = require "kong-lapis.spec.shared"
+import assert_request from require "kong-lapis.spec.request"
 
-cache = require "lapis.cache"
+cache = require "kong-lapis.cache"
 import cached from cache
 
-describe "lapis.cache", ->
+describe "kong-lapis.cache", ->
   before_each -> mock_shared.setup!
   after_each -> mock_shared.teardown!
 

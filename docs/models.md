@@ -13,13 +13,13 @@ The most primitive model is a blank model:
 
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Users = Model:extend("users")
 ```
 
 ```moon
-import Model from require "lapis.db.model"
+import Model from require "kong-lapis.db.model"
 
 class Users extends Model
 ```
@@ -81,7 +81,7 @@ fetching data about the underlying table.
 For the following examples assume we have the following models:
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Users = Model:extend("users")
 
@@ -91,7 +91,7 @@ local Tags = Model:extend("tags", {
 ```
 
 ```moon
-import Model from require "lapis.db.model"
+import Model from require "kong-lapis.db.model"
 
 class Users extends Model
 
@@ -477,7 +477,7 @@ In order to demonstrate `include_in` we'll need some models: (The columns are
 annotated in a comment above the model).
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 -- table with columns: id, name
 local Users = Model:extend("users")
@@ -487,7 +487,7 @@ local Posts = Model:extend("posts")
 ```
 
 ```moon
-import Model from require "lapis.db.model"
+import Model from require "kong-lapis.db.model"
 
 -- table with columns: id, name
 class Users extends Model
@@ -546,7 +546,7 @@ relation, the default mode loads `belongs_to` relations.)
 Here's an example using flip:
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 -- table with columns: id, name
 local Users = Model:extend("users")
@@ -557,7 +557,7 @@ local UserData = Model:extend("user_data")
 ```
 
 ```moon
-import Model from require "lapis.db.model"
+import Model from require "kong-lapis.db.model"
 
 -- columns: id, name
 class Users extends Model
@@ -792,7 +792,7 @@ You might create a table with timestamps using the schema syntax from Lapis
 like this:
 
 ```lua
-local schema = require "lapis.db.schema"
+local schema = require "kong-lapis.db.schema"
 
 scehma.create_table("some_table", {
   -- ...
@@ -803,7 +803,7 @@ scehma.create_table("some_table", {
 ```
 
 ```moon
-import types, create_table from require "lapis.db.schema"
+import types, create_table from require "kong-lapis.db.schema"
 
 create_table "some_table", {
   -- ...
@@ -882,7 +882,7 @@ user model and users are not allowed to have the name "admin".
 We might define it like this:
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Users = Model:extend("users", {
   constraints = {
@@ -901,7 +901,7 @@ assert(Users:create({
 ```
 
 ```moon
-import Model from require "lapis.db.models"
+import Model from require "kong-lapis.db.models"
 
 class Users extends Model
   @constraints: {
@@ -1170,14 +1170,14 @@ Here's how to instantiate an ordered paginator that can iterate over the `events
 table for a specific user id, in ascending order:
 
 ```lua
-local OrderedPaginator = require("lapis.db.pagination").OrderedPaginator
+local OrderedPaginator = require("kong-lapis.db.pagination").OrderedPaginator
 local pager = OrderedPaginator(Events, "id", "where user_id = ?", 123, {
   per_page = 50
 })
 ```
 
 ```moon
-import OrderedPaginator from require "lapis.db.pagination"
+import OrderedPaginator from require "kong-lapis.db.pagination"
 pager = OrderedPaginator Events, "id", "where user_id = ?", 123, {
   per_page: 50
 }
@@ -1218,14 +1218,14 @@ The pagination order can be specified by the `order` field in the options
 table. The default is `asc`.
 
 ```lua
-local OrderedPaginator = require("lapis.db.pagination").OrderedPaginator
+local OrderedPaginator = require("kong-lapis.db.pagination").OrderedPaginator
 local pager = OrderedPaginator(Events, "id", "where user_id = ?", 123, {
   order = "desc",
 })
 ```
 
 ```moon
-import OrderedPaginator from require "lapis.db.pagination"
+import OrderedPaginator from require "kong-lapis.db.pagination"
 pager = OrderedPaginator Events, "id", "where user_id = ?", 123, {
   order: "desc"
 }
@@ -1245,12 +1245,12 @@ If you have a model that has a composite sorting key (made up of more than one
 column), you can pass a table array as the ordering column:
 
 ```lua
-local OrderedPaginator = require("lapis.db.pagination").OrderedPaginator
+local OrderedPaginator = require("kong-lapis.db.pagination").OrderedPaginator
 local pager = OrderedPaginator(SomeModel, {"user_id", "post_id"})
 ```
 
 ```moon
-import OrderedPaginator from require "lapis.db.pagination"
+import OrderedPaginator from require "kong-lapis.db.pagination"
 pager = OrderedPaginator SomeModel, {"user_id", "post_id"}
 ```
 
@@ -1287,7 +1287,7 @@ can describe the relationships between models using the `relations` class
 property.
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 local Posts = Model:extend("posts", {
   relations = {
     {"users", belongs_to = "Users"},
@@ -1297,7 +1297,7 @@ local Posts = Model:extend("posts", {
 ```
 
 ```moon
-import Model from require "lapis.db.models"
+import Model from require "kong-lapis.db.models"
 class Posts extends Model
   @relations: {
     {"user", belongs_to: "Users"}
@@ -1347,7 +1347,7 @@ named `user` in the model.
 
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Posts = Model:extend("posts", {
   relations = {
@@ -1357,7 +1357,7 @@ local Posts = Model:extend("posts", {
 ```
 
 ```moon
-import Model from require "lapis.db.models"
+import Model from require "kong-lapis.db.models"
 
 class Posts extends Model
   @relations: {
@@ -1393,7 +1393,7 @@ the foreign key used to fetch the other model is located on the other table.
 
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Users = Model:extend("users", {
   relations = {
@@ -1403,7 +1403,7 @@ local Users = Model:extend("users", {
 ```
 
 ```moon
-import Model from require "lapis.db.models"
+import Model from require "kong-lapis.db.models"
 class Users extends Model
   @relations: {
     {"user_profile", has_one: "UserProfiles"}
@@ -1430,7 +1430,7 @@ to `user_id`. Sometimes the calculated foreign key isn't correct, you can
 provide a custom key with the `key` parameter to the relation:
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Users = Model:extend("users", {
   relations = {
@@ -1440,7 +1440,7 @@ local Users = Model:extend("users", {
 ```
 
 ```moon
-import Model from require "lapis.db.models"
+import Model from require "kong-lapis.db.models"
 
 class Users extends Model
   @relations: {
@@ -1470,7 +1470,7 @@ A one to many relation. It defines two methods, one that returns a [`Paginator`
 object](#pagination), and one that fetches all of the objects.
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Users = Model:extend("users", {
   relations = {
@@ -1480,7 +1480,7 @@ local Users = Model:extend("users", {
 ```
 
 ```moon
-import Model from require "lapis.db.models"
+import Model from require "kong-lapis.db.models"
 class Users extends Model
   @relations: {
     {"posts", has_many: "Posts"}
@@ -1538,7 +1538,7 @@ The `has_many` relation supports a few more options:
 Here's a more complex exmaple using some of the options:
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Users = Model:extend("users", {
   relations = {
@@ -1552,7 +1552,7 @@ local Users = Model:extend("users", {
 ```
 
 ```moon
-import Model from require "lapis.db.models"
+import Model from require "kong-lapis.db.models"
 class Users extends Model
   @relations: {
     {"authored_posts"
@@ -1580,7 +1580,7 @@ SELECT * from "posts" where "poster_id" = 123 and deleted = FALSE order by id de
 A custom relation, provide a function to fetch the associated data. Result is cached.
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Users = Model:extend("users", {
   relations = {
@@ -1592,7 +1592,7 @@ local Users = Model:extend("users", {
 ```
 
 ```moon
-import Model from require "lapis.db.models"
+import Model from require "kong-lapis.db.models"
 class Users extends Model
   @relations: {
     {"recent_posts", fetch: =>
@@ -1617,11 +1617,11 @@ ahead of time in a single query before iterating over them.
 
 
 ```lua
-local preload = require("lapis.db.models").preload
+local preload = require("kong-lapis.db.models").preload
 ```
 
 ```moon
-import preload from require "lapis.db.models"
+import preload from require "kong-lapis.db.models"
 ```
 
 The `preload` function is a general purpose preloading for loading relations on
@@ -1659,7 +1659,7 @@ passed to `preload_relation` are merged in the options to the call to
 
 
 ```lua
-local Model = require("lapis.db.model").Model
+local Model = require("kong-lapis.db.model").Model
 
 local Posts = Model:extend("posts", {
   relations = {
@@ -1669,7 +1669,7 @@ local Posts = Model:extend("posts", {
 ```
 
 ```moon
-import Model from require "lapis.db.models"
+import Model from require "kong-lapis.db.models"
 
 class Posts extends Model
   @relations: {
@@ -1722,7 +1722,7 @@ between integer constants and names. This is useful for created enumerations in
 your database rows by using integers to represent a state.
 
 ```lua
-local model = require("lapis.db.model")
+local model = require("kong-lapis.db.model")
 local Model, enum = model.Model, model.enum
 
 local Posts = Model:extend("posts")
@@ -1735,7 +1735,7 @@ Posts.statuses = enum {
 ```
 
 ```moon
-import Model, enum from require "lapis.db.model"
+import Model, enum from require "kong-lapis.db.model"
 
 class Posts extends Model
   @statuses: enum {

@@ -1,12 +1,12 @@
-config = require "lapis.config"
+config = require "kong-lapis.config"
 config.default_config.postgres = {backend: "pgmoon"}
 config.reset true
 
-db = require "lapis.db.postgres"
-import Model from require "lapis.db.postgres.model"
+db = require "kong-lapis.db.postgres"
+import Model from require "kong-lapis.db.postgres.model"
 import stub_queries, assert_queries from require "spec.helpers"
 
-describe "lapis.db.model.relations", ->
+describe "kong-lapis.db.model.relations", ->
   get_queries, mock_query = stub_queries!
 
   with old = assert_queries
@@ -138,7 +138,7 @@ describe "lapis.db.model.relations", ->
     assert.same 1, three\get_thing!
     assert.same "yes", four\get_thing!
 
-    import LOADED_KEY from require "lapis.db.model.relations"
+    import LOADED_KEY from require "kong-lapis.db.model.relations"
 
     for item in *{one, two, three}
       assert.true item[LOADED_KEY].thing
@@ -460,7 +460,7 @@ describe "lapis.db.model.relations", ->
       }
 
   it "finds relation", ->
-    import find_relation from require "lapis.db.model.relations"
+    import find_relation from require "kong-lapis.db.model.relations"
 
     class Posts extends Model
       @relations: {
@@ -563,7 +563,7 @@ describe "lapis.db.model.relations", ->
         [[SELECT * from "tags" where "post_id" in (888)]]
       }
 
-      import LOADED_KEY from require "lapis.db.model.relations"
+      import LOADED_KEY from require "kong-lapis.db.model.relations"
 
       assert.same {
         user: true

@@ -1,5 +1,5 @@
 
-import Widget from require "lapis.html"
+import Widget from require "kong-lapis.html"
 
 class MoonTest extends Widget
   content: =>

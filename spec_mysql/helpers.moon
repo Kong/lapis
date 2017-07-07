@@ -1,5 +1,5 @@
-import push, pop from require "lapis.environment"
-import set_backend, init_logger from require "lapis.db.mysql"
+import push, pop from require "kong-lapis.environment"
+import set_backend, init_logger from require "kong-lapis.db.mysql"
 
 setup_db = (opts) ->
   push "test", {
