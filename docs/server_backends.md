@@ -55,7 +55,7 @@ You can specify which server to use in your [configuration file]($root/reference
 
 
 ```lua
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 
 config("development", {
   server = "cqueues"
@@ -66,7 +66,7 @@ config("development", {
 
 ```moon
 -- config.moon
-config = require "lapis.config"
+config = require "kong-lapis.config"
 
 config "development", ->
   server "cqueues"

@@ -27,8 +27,8 @@ route of your choosing:
 
 
 ```lua
-local lapis = require("lapis")
-local console = require("lapis.console")
+local lapis = require("kong-lapis")
+local console = require("kong-lapis.console")
 
 local app = lapis.Application()
 
@@ -39,8 +39,8 @@ return app
 
 
 ```moon
-lapis = require "lapis"
-console = require "lapis.console"
+lapis = require "kong-lapis"
+console = require "kong-lapis.console"
 
 class extends lapis.Application
   "/console": console.make!

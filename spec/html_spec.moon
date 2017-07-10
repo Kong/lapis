@@ -1,12 +1,12 @@
 
-import render_html, Widget from require "lapis.html"
+import render_html, Widget from require "kong-lapis.html"
 
 render_widget = (w) ->
   buffer = {}
   w buffer
   table.concat buffer
 
-describe "lapis.html", ->
+describe "kong-lapis.html", ->
   it "should render html", ->
     output = render_html ->
       b "what is going on?"

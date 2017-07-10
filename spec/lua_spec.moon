@@ -1,7 +1,7 @@
 
-describe "lapis.lua", ->
+describe "kong-lapis.lua", ->
   it "works with super", ->
-    lua = require "lapis.lua"
+    lua = require "kong-lapis.lua"
     count = 0
 
     local *

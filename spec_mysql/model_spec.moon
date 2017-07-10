@@ -1,4 +1,4 @@
-db = require "lapis.db.mysql"
+db = require "kong-lapis.db.mysql"
 
 import setup_db, teardown_db from require "spec_mysql.helpers"
 import Users, Posts, Likes from require "spec_mysql.models"

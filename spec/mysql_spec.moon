@@ -1,7 +1,7 @@
 require "spec.helpers" -- for one_of
 
-db = require "lapis.db.mysql"
-schema = require "lapis.db.mysql.schema"
+db = require "kong-lapis.db.mysql"
+schema = require "kong-lapis.db.mysql.schema"
 
 -- TODO: we can't test escape_literal with strings here because we need a
 -- connection for escape function
@@ -9,7 +9,7 @@ schema = require "lapis.db.mysql.schema"
 value_table = { hello: db.FALSE, age: 34 }
 
 tests = {
-  -- lapis.db.mysql
+  -- kong-lapis.db.mysql
   {
     -> db.escape_identifier "dad"
     '`dad`'
@@ -111,7 +111,7 @@ tests = {
   }
 
 
-  -- lapis.db.mysql.schema
+  -- kong-lapis.db.mysql.schema
   {
     -> tostring schema.types.varchar
     "VARCHAR(255) NOT NULL"
@@ -245,7 +245,7 @@ tests = {
 }
 
 local old_query_fn
-describe "lapis.db.mysql", ->
+describe "kong-lapis.db.mysql", ->
   setup ->
     old_query_fn = db.set_backend "raw", (q) -> q
 

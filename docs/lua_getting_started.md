@@ -27,11 +27,11 @@ this:
 
 ```lua
 -- app.lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 local app = lapis.Application()
 
 app:get("/", function()
-  return "Welcome to Lapis " .. require("lapis.version")
+  return "Welcome to Lapis " .. require("kong-lapis.version")
 end)
 
 return app
@@ -51,7 +51,7 @@ In this example we change the port in the `development` environment to 9090:
 
 ```lua
 -- config.lua
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 
 config("development", {
   port = 9090
@@ -70,7 +70,7 @@ fields can be used to store anything you want. For example:
 
 ```lua
 -- config.lua
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 
 config("development", {
   greeting = "Hello world"
@@ -82,8 +82,8 @@ table:
 
 ```lua
 -- app.lua
-local lapis = require("lapis")
-local config = require("lapis.config").get()
+local lapis = require("kong-lapis")
+local config = require("kong-lapis.config").get()
 
 local app = lapis.Application()
 
@@ -121,7 +121,7 @@ Now lets create the application which renders our view:
 
 ```lua
 -- app.lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 
 local app = lapis.Application()
 app:enable("etlua")
@@ -160,7 +160,7 @@ in our view:
 
 ```lua
 -- app.lua
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 
 local app = lapis.Application()
 app:enable("etlua")

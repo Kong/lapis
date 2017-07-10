@@ -142,7 +142,7 @@ html_builer = {
 {
   whitelist_globals: {
     ["."]: {"ngx"}
-    ["lapis/views"]: html_builer
+    ["kong-lapis/views"]: html_builer
   }
 }
 

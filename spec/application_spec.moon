@@ -1,7 +1,7 @@
 
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
-import mock_action, mock_request, assert_request from require "lapis.spec.request"
+import mock_action, mock_request, assert_request from require "kong-lapis.spec.request"
 
 mock_app = (...) ->
   mock_action lapis.Application, ...
@@ -164,7 +164,7 @@ describe "default layout", ->
     package.loaded["views.test_layout"] = nil
 
   it "uses widget as layout", ->
-    import Widget from require "lapis.html"
+    import Widget from require "kong-lapis.html"
     class TestApp extends lapis.Application
       layout: class Layout extends Widget
         content: =>
@@ -178,7 +178,7 @@ describe "default layout", ->
     assert.same [[<h1>hello world</h1>yeah<div class="footer"></div>]], body
 
   it "uses module name as layout", ->
-    import Widget from require "lapis.html"
+    import Widget from require "kong-lapis.html"
     class Layout extends Widget
       content: =>
         div class: "content", ->
@@ -194,7 +194,7 @@ describe "default layout", ->
 
 describe "error capturing", ->
   import capture_errors, capture_errors_json, assert_error,
-    yield_error from require "lapis.application"
+    yield_error from require "kong-lapis.application"
 
   it "should capture error", ->
     result = "no"

@@ -1,5 +1,5 @@
 
-util = require "lapis.util"
+util = require "kong-lapis.util"
 json = require "cjson"
 
 tests = {
@@ -351,7 +351,7 @@ tests = {
 
 }
 
-describe "lapis.util", ->
+describe "kong-lapis.util", ->
   for group in *tests
     it "should match", ->
       input = group[1]!
@@ -420,7 +420,7 @@ describe "lapis.util", ->
     for {plural, single} in *words
       assert.same single, util.singularize plural
 
-describe "lapis.util.mixin", ->
+describe "kong-lapis.util.mixin", ->
   it "should mixin mixins", ->
     import insert from table
     log = {}

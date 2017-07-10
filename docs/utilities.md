@@ -8,11 +8,11 @@
 Utility functions are found in:
 
 ```lua
-local util = require("lapis.util")
+local util = require("kong-lapis.util")
 ```
 
 ```moon
-util = require "lapis.util"
+util = require "kong-lapis.util"
 ```
 
 ### `unescape(str)`
@@ -74,8 +74,8 @@ that value instead of `nil`
 The table is modified in place.
 
 ```lua
-local db = require("lapis.db")
-local trim_filter = require("lapis.util").trim_filter
+local db = require("kong-lapis.db")
+local trim_filter = require("kong-lapis.util").trim_filter
 
 unknown_input = {
   username = "     hello    ",
@@ -94,8 +94,8 @@ trim_filter(unknown_input, {"username", "description"}, db.NULL)
 ```
 
 ```moon
-db = require "lapis.db"
-import trim_filter from require "lapis.util"
+db = require "kong-lapis.db"
+import trim_filter from require "kong-lapis.util"
 
 unknown_input = {
   username: "  hello  "
@@ -132,11 +132,11 @@ returned would be in the format `1 day, 4 hours ago`.
 Encoding functions are found in:
 
 ```lua
-local encoding = require("lapis.util.encoding")
+local encoding = require("kong-lapis.util.encoding")
 ```
 
 ```moon
-encoding = require "lapis.util.encoding"
+encoding = require "kong-lapis.util.encoding"
 ```
 
 ### `encode_base64(str)`
@@ -201,7 +201,7 @@ If your application is open source it's worthwhile to not commit this secret.
 The secret is set in [your configuration](#configuration-and-environments) like so:
 
 ```lua
-local config = require("lapis.config")
+local config = require("kong-lapis.config")
 
 config("development", {
   secret = "this is my secret string 123456"
@@ -210,7 +210,7 @@ config("development", {
 ```
 
 ```moon
-config = require "lapis.config"
+config = require "kong-lapis.config"
 
 config "development", ->
   secret "this is my secret string 123456"
@@ -221,10 +221,10 @@ like so:
 
 
 ```lua
-local lapis = require("lapis")
-local csrf = require("lapis.csrf")
+local lapis = require("kong-lapis")
+local csrf = require("kong-lapis.csrf")
 
-local capture_errors = require("lapis.application").capture_errors
+local capture_errors = require("kong-lapis.application").capture_errors
 
 local app = lapis.Application()
 
@@ -245,7 +245,7 @@ end))
 ```
 
 ```moon
-csrf = require "lapis.csrf"
+csrf = require "kong-lapis.csrf"
 
 class extends lapis.Application
   [form: "/form"]: respond_to {
@@ -268,11 +268,11 @@ class extends lapis.Application
 The following functions are part of the CSRF module:
 
 ```lua
-local csrf = require("lapis.csrf")
+local csrf = require("kong-lapis.csrf")
 ```
 
 ```moon
-csrf = require "lapis.csrf"
+csrf = require "kong-lapis.csrf"
 ```
 
 ###  `generate_token(req, key=nil, expires=os.time() + 28800)`
@@ -331,14 +331,14 @@ location /proxy {
 > `$_url` variable is used to store the target URL. It must be defined using
 > `set $_url ""` directive in your default location.
 
-Now we can use the `lapis.nginx.http` module. There are two methods. `request`
+Now we can use the `kong-lapis.nginx.http` module. There are two methods. `request`
 and `simple`. `request` implements the Lua Socket HTTP request API (complete
 with LTN12).
 
 `simple` is a simplified API with no LTN12:
 
 ```lua
-local http = require("lapis.nginx.http")
+local http = require("kong-lapis.nginx.http")
 
 local app = lapis.Application()
 
@@ -368,7 +368,7 @@ end)
 
 
 ```moon
-http = require "lapis.nginx.http"
+http = require "kong-lapis.nginx.http"
 
 class extends lapis.Application
   "/": =>
@@ -442,15 +442,15 @@ Add the following to your `http` block to create a 15mb cache:
 lua_shared_dict page_cache 15m;
 ```
 
-Now we are ready to start using the caching module, `lapis.cache`.
+Now we are ready to start using the caching module, `kong-lapis.cache`.
 
 ### `cached(fn_or_tbl)`
 
 Wraps an action to use the cache.
 
 ```lua
-local lapis = require("lapis")
-local cached = require("lapis.cache").cached
+local lapis = require("kong-lapis")
+local cached = require("kong-lapis.cache").cached
 
 local app = lapis.Application()
 
@@ -460,7 +460,7 @@ end))
 ```
 
 ```moon
-import cached from require "lapis.cache"
+import cached from require "kong-lapis.cache"
 
 class extends lapis.Application
   [my_page: "/hello/world"]: cached =>
@@ -497,8 +497,8 @@ For example, you could implement microcaching, where the page is cached for a
 short period of time, like so:
 
 ```lua
-local lapis = require("lapis")
-local cached = require("lapis.cache").cached
+local lapis = require("kong-lapis")
+local cached = require("kong-lapis.cache").cached
 
 local app = lapis.Application()
 
@@ -512,7 +512,7 @@ app:match("/microcached", cached({
 ```
 
 ```moon
-import cached from require "lapis.cache"
+import cached from require "kong-lapis.cache"
 
 class extends lapis.Application
   "/microcached": cached {
@@ -528,12 +528,12 @@ of `{path, params}` that will be encoded as the key.
 
 
 ```lua
-local cache = require("lapis.cache")
+local cache = require("kong-lapis.cache")
 cache.delete({ "/hello", { thing = "world" } })
 ```
 
 ```moon
-cache = require "lapis.cache"
+cache = require "kong-lapis.cache"
 cache.delete { "/hello", { thing: "world" } }
 ```
 
@@ -546,12 +546,12 @@ Deletes all entries from the cache.
 Deletes all entries for a specific path.
 
 ```lua
-local cache = require("lapis.cache")
+local cache = require("kong-lapiscache")
 cache.delete_path("/hello")
 ```
 
 ```moon
-cache = require "lapis.cache"
+cache = require "kong-lapis.cache"
 cache.delete_path "/hello"
 ```
 
@@ -564,7 +564,7 @@ class="for_lua">`self.params`</span> of the request.
 For example, let's create the following form:
 
 ```moon
-import Widget from require "lapis.html"
+import Widget from require "kong-lapis.html"
 
 class MyForm extends Widget
   content: =>
@@ -634,14 +634,14 @@ greater than that you should set a new value in your Nginx configuration.
 
 ## Application Helpers
 
-The following functions are part of the `lapis.application` module:
+The following functions are part of the `kong-lapis.application` module:
 
 ```lua
-local app_helpers = require("lapis.application")
+local app_helpers = require("kong-lapis.application")
 ```
 
 ```moon
-application = require "lapis.application"
+application = require "kong-lapis.application"
 ```
 
 ### `fn = respond_to(verbs_to_fn={})`
@@ -721,7 +721,7 @@ Return a new function that will parse the body of the request as JSON and
 inject it into `@params` if the `content-type` is set to `application/json`.
 
 ```lua
-local json_params = require("lapis.application").json_params
+local json_params = require("kong-lapis.application").json_params
 
 app:match("/json", json_params(function(self)
   return self.params.value
@@ -729,7 +729,7 @@ end))
 ```
 
 ```moon
-import json_params from require "lapis.application"
+import json_params from require "kong-lapis.application"
 
 class JsonApp extends lapis.Application
   "/json": json_params =>

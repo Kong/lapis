@@ -19,11 +19,11 @@ skeleton application, `app.moon`. The skeleton application looks like this:
 
 ```moon
 -- app.moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class extends lapis.Application
   "/": =>
-    "Welcome to Lapis #{require "lapis.version"}!"
+    "Welcome to Lapis #{require "kong-lapis.version"}!"
 ```
 
 This defines a regular Lua module that returns our application class. (Implicit
@@ -54,7 +54,7 @@ Here's a slightly more complicated exmaple to give you a feel of what they look
 like:
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 favorite_foods = {
   "pizza": "Wow pizza is the best! Definitely my favorite"
@@ -105,7 +105,7 @@ the route is the pattern and the action is the function that handles the
 matching route:
 
 ```moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class App extends lapis.Application
   "/hello": => "Hello World!"
@@ -138,7 +138,7 @@ Let's say we've got a separate application for handling users:
 
 ```moon
 -- applications/users.moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class UsersApplication extends lapis.Application
   [login: "/login"]: do_login!
@@ -149,7 +149,7 @@ We can include this application into our main one:
 
 ```moon
 -- app.moon
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 class extends lapis.Application
   @include "applications.users"

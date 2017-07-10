@@ -1,14 +1,14 @@
-config = require "lapis.config"
+config = require "kong-lapis.config"
 config.default_config.postgres = {backend: "pgmoon"}
 config.reset true
 
-db = require "lapis.db.postgres"
-import Model from require "lapis.db.postgres.model"
+db = require "kong-lapis.db.postgres"
+import Model from require "kong-lapis.db.postgres.model"
 import stub_queries, assert_queries from require "spec.helpers"
 
 time = 1376377000
 
-describe "lapis.db.model", ->
+describe "kong-lapis.db.model", ->
   get_queries, mock_query = stub_queries!
 
   local old_date
@@ -105,13 +105,13 @@ describe "lapis.db.model", ->
       assert_queries {
         [[SELECT * from "things" WHERE "dad" IN (1, 2, 4)]]
       }
-    
+
     it "with fields option", ->
       Things\find_all { 1,2,4 }, fields: "hello"
       assert_queries {
         [[SELECT hello from "things" WHERE "id" IN (1, 2, 4)]]
       }
-    
+
     it "with multiple field and key option", ->
       Things\find_all { 1,2,4 }, fields: "hello, world", key: "dad"
       assert_queries {
@@ -241,7 +241,7 @@ describe "lapis.db.model", ->
     }
 
   it "should ordered paginate", ->
-    import OrderedPaginator from require "lapis.db.pagination"
+    import OrderedPaginator from require "kong-lapis.db.pagination"
     class Things extends Model
 
     pager = OrderedPaginator Things, "id", "where color = blue"
@@ -255,7 +255,7 @@ describe "lapis.db.model", ->
     }
 
   it "should ordered paginate with multiple keys", ->
-    import OrderedPaginator from require "lapis.db.pagination"
+    import OrderedPaginator from require "kong-lapis.db.pagination"
     class Things extends Model
 
     mock_query "SELECT", { { id: 101, updated_at: 300 }, { id: 102, updated_at: 301 } }
@@ -582,7 +582,7 @@ describe "lapis.db.model", ->
 
     it "with for relation", ->
       ThingItems\include_in things, "thing_id", for_relation: "yeahs"
-      import LOADED_KEY from require "lapis.db.model.relations"
+      import LOADED_KEY from require "kong-lapis.db.model.relations"
       for thing in *things
         assert.same thing[LOADED_KEY], { yeahs: true }
 
@@ -712,7 +712,7 @@ describe "lapis.db.model", ->
 
 
   describe "enum", ->
-    import enum from require "lapis.db.model"
+    import enum from require "kong-lapis.db.model"
 
     it "should create an enum", ->
       e = enum {

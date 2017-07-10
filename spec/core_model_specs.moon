@@ -189,7 +189,7 @@ assert_same_rows = (a, b) ->
       }
 
       query_log = {}
-      db = require "lapis.db"
+      db = require "kong-lapis.db"
 
       query_fn = db.get_raw_query!
       db.set_raw_query (q) ->
@@ -198,7 +198,7 @@ assert_same_rows = (a, b) ->
 
     after_each ->
       package.loaded.models = nil
-      db = require "lapis.db"
+      db = require "kong-lapis.db"
       db.set_raw_query query_fn
 
     it "should fetch relation", ->

@@ -1,4 +1,4 @@
-local lapis = require("lapis")
+local lapis = require("kong-lapis")
 
 local app = lapis.Application()
 app:enable("etlua")

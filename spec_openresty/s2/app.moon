@@ -1,5 +1,5 @@
-lapis = require "lapis"
-db = require "lapis.db"
+lapis = require "kong-lapis"
+db = require "kong-lapis.db"
 
 import Users, Posts, Likes from require "spec_mysql.models"
 

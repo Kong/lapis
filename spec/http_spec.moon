@@ -1,9 +1,9 @@
 
-describe "lapis.http", ->
+describe "kong-lapis.http", ->
   local location, options
 
   before_each ->
-    stack = require "lapis.spec.stack"
+    stack = require "kong-lapis.spec.stack"
     stack.push {
       HTTP_GET: 1
       HTTP_POST: 2
@@ -18,13 +18,13 @@ describe "lapis.http", ->
     }
 
   after_each ->
-    stack = require "lapis.spec.stack"
+    stack = require "kong-lapis.spec.stack"
     stack.pop!
 
   describe "simple", ->
     local simple
     before_each ->
-      simple = require("lapis.http").simple
+      simple = require("kong-lapis.http").simple
 
     it "should call with string", ->
       simple "http://leafo.net"
@@ -106,7 +106,7 @@ describe "lapis.http", ->
   describe "request", ->
     local request
     before_each ->
-      request = require("lapis.http").request
+      request = require("kong-lapis.http").request
 
     it "should call with string", ->
       request "http://leafo.net"

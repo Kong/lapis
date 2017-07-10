@@ -1,7 +1,7 @@
-import NginxRunner from require "lapis.cmd.nginx"
+import NginxRunner from require "kong-lapis.cmd.nginx"
 runner = NginxRunner base_path: "spec_openresty/s1/"
 
-import SpecServer from require "lapis.spec.server"
+import SpecServer from require "kong-lapis.spec.server"
 server = SpecServer runner
 
 describe "server", ->

@@ -1,14 +1,14 @@
 
-lapis = require "lapis"
+lapis = require "kong-lapis"
 
 import
   mock_request
   mock_action
   assert_request
   stub_request
-  from require "lapis.spec.request"
+  from require "kong-lapis.spec.request"
 
-describe "lapis.spec.request", ->
+describe "kong-lapis.spec.request", ->
   describe "mock_request", ->
     class App extends lapis.Application
       "/hello": =>
@@ -32,7 +32,7 @@ describe "lapis.spec.request", ->
     it "should mock request with session", ->
       class SessionApp extends lapis.Application
         "/test-session": =>
-          import flatten_session from require "lapis.session"
+          import flatten_session from require "kong-lapis.session"
           assert.same {
             color: "hello"
             height: {1,2,3,4}
@@ -58,7 +58,7 @@ describe "lapis.spec.request", ->
       req = stub_request SomeApp, "/"
       assert.same "/cool/world", req\url_for "cool_page", name: "world"
 
-describe "lapis.request", ->
+describe "kong-lapis.request", ->
   describe "session", ->
     class SessionApp extends lapis.Application
       layout: false
@@ -93,7 +93,7 @@ describe "lapis.request", ->
       assert.same {}, params
 
   describe "json request", ->
-    import json_params from require "lapis.application"
+    import json_params from require "kong-lapis.application"
 
     it "should parse json object body", ->
       local res
@@ -258,7 +258,7 @@ describe "lapis.request", ->
       assert.same "hello", res
 
     it "renders with layout by name", ->
-      import Widget from require "lapis.html"
+      import Widget from require "kong-lapis.html"
       package.loaded["views.another_layout"] = class extends Widget
         content: =>
           text "*"
@@ -273,7 +273,7 @@ describe "lapis.request", ->
       assert.same "*hello^", res
 
     it "renders layout with class", ->
-      import Widget from require "lapis.html"
+      import Widget from require "kong-lapis.html"
 
       class Layout extends Widget
         content: =>

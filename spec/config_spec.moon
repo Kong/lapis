@@ -2,22 +2,22 @@
 restore_config = ->
   local old_config, old_env
   setup ->
-    old_config = package.loaded["lapis.config"]
-    old_env = package.loaded["lapis.environment"]
+    old_config = package.loaded["kong-lapis.config"]
+    old_env = package.loaded["kong-lapis.environment"]
 
   teardown ->
-    package.loaded["lapis.config"] = old_config
-    package.loaded["lapis.environment"] = old_env
+    package.loaded["kong-lapis.config"] = old_config
+    package.loaded["kong-lapis.environment"] = old_env
 
-describe "lapis.env", ->
+describe "kong-lapis.env", ->
   restore_config!
 
   before_each ->
-    package.loaded["lapis.config"] = nil
-    package.loaded["lapis.environment"] = nil
-    config = require "lapis.config"
+    package.loaded["kong-lapis.config"] = nil
+    package.loaded["kong-lapis.environment"] = nil
+    config = require "kong-lapis.config"
 
-    c = require "lapis.config"
+    c = require "kong-lapis.config"
 
     c "first", ->
       color "blue"
@@ -26,35 +26,35 @@ describe "lapis.env", ->
       color "red"
 
   it "should push and pop env by name", ->
-    env = require "lapis.environment"
+    env = require "kong-lapis.environment"
     -- default env
-    assert.same "development", require("lapis.config").get!._name
+    assert.same "development", require("kong-lapis.config").get!._name
     env.push "first"
-    assert.same "first", require("lapis.config").get!._name
+    assert.same "first", require("kong-lapis.config").get!._name
     env.push "second"
-    assert.same "second", require("lapis.config").get!._name
-    assert.same "red", require("lapis.config").get!.color
+    assert.same "second", require("kong-lapis.config").get!._name
+    assert.same "red", require("kong-lapis.config").get!.color
     env.pop!
-    assert.same "first", require("lapis.config").get!._name
+    assert.same "first", require("kong-lapis.config").get!._name
     env.pop!
-    assert.same "development", require("lapis.config").get!._name
+    assert.same "development", require("kong-lapis.config").get!._name
 
     assert.has_error ->
       env.pop!
 
   it "should push and pop table env", ->
-    env = require "lapis.environment"
+    env = require "kong-lapis.environment"
     env.push { color: "green" }
-    assert.same "green", require("lapis.config").get!.color
+    assert.same "green", require("kong-lapis.config").get!.color
     env.push { color: "blue" }
-    assert.same "blue", require("lapis.config").get!.color
+    assert.same "blue", require("kong-lapis.config").get!.color
     env.pop!
-    assert.same "green", require("lapis.config").get!.color
+    assert.same "green", require("kong-lapis.config").get!.color
     env.pop!
-    assert.same nil, require("lapis.config").get!.color
+    assert.same nil, require("kong-lapis.config").get!.color
 
 
-describe "lapis.config", ->
+describe "kong-lapis.config", ->
   restore_config!
 
   _G.do_nothing = ->
@@ -72,10 +72,10 @@ describe "lapis.config", ->
     extend {}, config.default_config, c
 
   before_each ->
-    package.loaded["lapis.config"] = nil
-    package.loaded["lapis.environment"] = nil
+    package.loaded["kong-lapis.config"] = nil
+    package.loaded["kong-lapis.environment"] = nil
 
-    config = require "lapis.config"
+    config = require "kong-lapis.config"
     config.reset true
 
   it "should create empty config", ->

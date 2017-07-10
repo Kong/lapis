@@ -1,14 +1,14 @@
 
 unless (pcall require, "crypto") or (pcall require, "openssl.hmac")
-  describe "lapis.util.encoding", ->
+  describe "kong-lapis.util.encoding", ->
     it "should have luacrypto or luaossl", ->
       pending "either luacrypto or luaossl is required for util.encoding specs"
   return
 
-encoding = require "lapis.util.encoding"
+encoding = require "kong-lapis.util.encoding"
 
-describe "lapis.util.encoding", ->
-  config = require"lapis.config".get!
+describe "kong-lapis.util.encoding", ->
+  config = require"kong-lapis.config".get!
 
   before_each ->
     config.secret = "the-secret"

@@ -124,7 +124,7 @@ This is what a widget looks like:
 
 ```moon
 -- views/index.moon
-import Widget from require "lapis.html"
+import Widget from require "kong-lapis.html"
 
 class Index extends Widget
   content: =>
@@ -184,7 +184,7 @@ class App extends lapis.Application
 
 ```moon
 -- views/index.moon
-import Widget from require "lapis.html"
+import Widget from require "kong-lapis.html"
 
 class Index extends Widget
   content: =>
@@ -210,7 +210,7 @@ widget instance. Any object can be included as a helper, and its methods will
 be made available inside of the widget.
 
 ```moon
-html = require "lapis.html"
+html = require "kong-lapis.html"
 class SomeWidget extends html.Widget
   content: =>
     a href: @url_for("test"), "Test Page"
@@ -237,7 +237,7 @@ pages. Typically this is where you would put your `<html>` and `<head>` tags.
 Lapis comes with a default layout that looks like this:
 
 ```moon
-html = require "lapis.html"
+html = require "kong-lapis.html"
 
 class DefaultLayout extends html.Widget
   content: =>
@@ -364,7 +364,7 @@ class MyView extends Widget
 ## HTML Module
 
 ```moon
-html = require "lapis.html"
+html = require "kong-lapis.html"
 ```
 
 ### `render_html(fn)`
@@ -375,7 +375,7 @@ reference to an undefined global variable into a function that will render the
 appropriate tag.
 
 ```moon
-import render_html from require "lapis.html"
+import render_html from require "kong-lapis.html"
 
 print render_html ->
   div class: "item", ->

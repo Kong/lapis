@@ -1,5 +1,5 @@
 
-import Router, RouteParser from require "lapis.router"
+import Router, RouteParser from require "kong-lapis.router"
 
 build_router = (routes) ->
   handler = (...) -> { ... }

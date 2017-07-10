@@ -1,6 +1,6 @@
-import Model, enum from require "lapis.db.mysql.model"
-import types, create_table from require "lapis.db.mysql.schema"
-import drop_tables, truncate_tables from require "lapis.spec.db"
+import Model, enum from require "kong-lapis.db.mysql.model"
+import types, create_table from require "kong-lapis.db.mysql.schema"
+import drop_tables, truncate_tables from require "kong-lapis.spec.db"
 
 class Users extends Model
   @create_table: =>

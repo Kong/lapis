@@ -1,7 +1,7 @@
 
-nginx = require "lapis.cmd.nginx"
+nginx = require "kong-lapis.cmd.nginx"
 
-describe "lapis.cmd.nginx", ->
+describe "kong-lapis.cmd.nginx", ->
   it "should compile config", ->
     tpl = [[
 hello: ${{some_var}}]]
@@ -74,8 +74,8 @@ hello: what's up]], compiled
     compiled = nginx.compile_etlua_config "thing: <%- cool %>"
     assert.same "env LAPIS_ENVIRONMENT;\nthing: #{val}", compiled
 
-describe "lapis.cmd.actions", ->
-  import get_action, execute from require "lapis.cmd.actions"
+describe "kong-lapis.cmd.actions", ->
+  import get_action, execute from require "kong-lapis.cmd.actions"
 
   it "gets built in action", ->
     action = get_action "help"
@@ -86,7 +86,7 @@ describe "lapis.cmd.actions", ->
     assert.same nil, action
 
   it "gets action from module", ->
-    package.loaded["lapis.cmd.actions.cool"] = {
+    package.loaded["kong-lapis.cmd.actions.cool"] = {
       name: "cool"
       ->
     }
@@ -101,16 +101,16 @@ describe "lapis.cmd.actions", ->
     _G.print = p
 
 
-describe "lapis.cmd.actions.execute", ->
-  import join, shell_escape from require "lapis.cmd.path"
+describe "kong-lapis.cmd.actions.execute", ->
+  import join, shell_escape from require "kong-lapis.cmd.path"
   local cmd
   local old_dir, new_dir, old_package_path
   lfs = require "lfs"
 
   before_each ->
-    cmd = require "lapis.cmd.actions"
+    cmd = require "kong-lapis.cmd.actions"
     -- replace the annotated path with silent one
-    cmd.actions.path = require "lapis.cmd.path"
+    cmd.actions.path = require "kong-lapis.cmd.path"
 
     old_dir = lfs.currentdir!
 
@@ -145,52 +145,52 @@ describe "lapis.cmd.actions.execute", ->
 
   describe "new", ->
     it "default app", ->
-      cmd.execute { [0]: "lapis", "new" }
+      cmd.execute { [0]: "kong-lapis", "new" }
 
       assert_files {
         "app.moon", "mime.types", "models.moon", "nginx.conf"
       }
 
     it "cqueues app", ->
-      cmd.execute { [0]: "lapis", "new", "--cqueues" }
+      cmd.execute { [0]: "kong-lapis", "new", "--cqueues" }
       assert_files { "app.moon", "models.moon" }
 
     it "etlua config", ->
-      cmd.execute { [0]: "lapis", "new", "--etlua-config" }
+      cmd.execute { [0]: "kong-lapis", "new", "--etlua-config" }
 
       assert_files {
         "app.moon", "mime.types", "models.moon", "nginx.conf.etlua"
       }
 
     it "command line flags can go anywhere", ->
-      cmd.execute { [0]: "lapis", "--etlua-config", "new" }
+      cmd.execute { [0]: "kong-lapis", "--etlua-config", "new" }
 
       assert_files {
         "app.moon", "mime.types", "models.moon", "nginx.conf.etlua"
       }
 
     it "lua default", ->
-      cmd.execute { [0]: "lapis", "new", "--lua" }
+      cmd.execute { [0]: "kong-lapis", "new", "--lua" }
       assert_files {
         "app.lua", "mime.types", "models.lua", "nginx.conf"
       }
 
     it "has tup", ->
-      cmd.execute { [0]: "lapis", "new", "--tup" }
+      cmd.execute { [0]: "kong-lapis", "new", "--tup" }
       assert_files {
         "app.moon", "mime.types", "models.moon", "nginx.conf", "Tupfile", "Tuprules.tup"
       }
 
     it "has git", ->
-      cmd.execute { [0]: "lapis", "new", "--git" }
+      cmd.execute { [0]: "kong-lapis", "new", "--git" }
       assert_files {
         "app.moon", "mime.types", "models.moon", "nginx.conf", ".gitignore"
       }
 
   describe "build", ->
     it "buils app", ->
-      cmd.execute { [0]: "lapis", "new" }
-      cmd.execute { [0]: "lapis", "build" }
+      cmd.execute { [0]: "kong-lapis", "new" }
+      cmd.execute { [0]: "kong-lapis", "build" }
 
       assert_files {
         "app.moon", "mime.types", "models.moon", "nginx.conf", "nginx.conf.compiled"
@@ -198,17 +198,17 @@ describe "lapis.cmd.actions.execute", ->
 
   describe "generate", ->
     it "generates model", ->
-      cmd.execute { [0]: "lapis", "generate", "model", "things" }
+      cmd.execute { [0]: "kong-lapis", "generate", "model", "things" }
       assert_files { "models/things.moon" }
 
     it "generates spec", ->
-      cmd.execute { [0]: "lapis", "generate", "spec", "models.things" }
+      cmd.execute { [0]: "kong-lapis", "generate", "spec", "models.things" }
       assert_files { "spec/models/things_spec.moon" }
 
 
-describe "lapis.cmd.util", ->
+describe "kong-lapis.cmd.util", ->
   it "columnizes", ->
-    import columnize from require "lapis.cmd.util"
+    import columnize from require "kong-lapis.cmd.util"
 
     columnize {
       {"hello", "here is some info"}
@@ -218,7 +218,7 @@ describe "lapis.cmd.util", ->
     }
 
   it "parses flags", ->
-    import parse_flags from require "lapis.cmd.util"
+    import parse_flags from require "kong-lapis.cmd.util"
     flags, args = parse_flags { "hello", "--world", "-h=1", "yeah" }
 
     assert.same {

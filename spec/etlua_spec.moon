@@ -1,7 +1,7 @@
 
-import EtluaWidget from require "lapis.etlua"
+import EtluaWidget from require "kong-lapis.etlua"
 
-describe "lapis.etlua", ->
+describe "kong-lapis.etlua", ->
   it "should render a widget", ->
     w = EtluaWidget\load([[hello world]])!
     assert.same "hello world", w\render_to_string!
@@ -40,8 +40,8 @@ describe "lapis.etlua", ->
     assert.same [[before <div class="big">Hello</div>, <div class='small'>yeah</div> after]], w\render_to_string!
 
   describe "with application", ->
-    lapis = require "lapis"
-    import assert_request from require "lapis.spec.request"
+    lapis = require "kong-lapis"
+    import assert_request from require "kong-lapis.spec.request"
 
     layout = EtluaWidget\load [[<html data-etlua><% content_for("inner") %></html>]]
 
@@ -75,7 +75,7 @@ describe "lapis.etlua", ->
       assert.same [[<html data-etlua>url: /the-page</html>]], body
 
   describe "with widgets", ->
-    import Widget from require "lapis.html"
+    import Widget from require "kong-lapis.html"
 
     it "should let a widget render etlua", ->
       fragment = EtluaWidget\load [[color: <%= color %>]]
@@ -126,12 +126,12 @@ describe "lapis.etlua", ->
 
     describe "with loadkit", ->
       before_each ->
-        require "lapis.features.etlua"
+        require "kong-lapis.features.etlua"
 
       after_each ->
         loadkit = require "loadkit"
         loadkit.unregister "etlua"
-        package.loaded["lapis.features.etlua"] = nil
+        package.loaded["kong-lapis.features.etlua"] = nil
 
       it "should render template from loadkit", ->
         tpl = EtluaWidget\load [[before<% render("spec.templates.etlua_test2") %>after<%= color %>]]
@@ -152,8 +152,8 @@ after]], out
       describe "with app", ->
         local app, tpl
 
-        lapis = require "lapis"
-        import assert_request from require "lapis.spec.request"
+        lapis = require "kong-lapis"
+        import assert_request from require "kong-lapis.spec.request"
 
         before_each ->
           app = lapis.Application!

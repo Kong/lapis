@@ -1,9 +1,9 @@
 
-db = require "lapis.db.mysql"
-schema = require "lapis.db.mysql.schema"
+db = require "kong-lapis.db.mysql"
+schema = require "kong-lapis.db.mysql.schema"
 
 import setup_db, teardown_db from require "spec_mysql.helpers"
-import drop_tables from require "lapis.spec.db"
+import drop_tables from require "kong-lapis.spec.db"
 import create_table, drop_table, types from schema
 
 describe "model", ->

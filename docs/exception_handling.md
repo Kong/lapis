@@ -40,8 +40,8 @@ helper. Then we can throw a raw error using `yield_error`.
 
 
 ```lua
-local lapis = require("lapis")
-local app_helpers = require("lapis.application")
+local lapis = require("kong-lapis")
+local app_helpers = require("kong-lapis.application")
 
 local capture_errors, yield_error = app_helpers.capture_errors, app_helpers.yield_error
 
@@ -54,7 +54,7 @@ end))
 ```
 
 ```moon
-import capture_errors, yield_error from require "lapis.application"
+import capture_errors, yield_error from require "kong-lapis.application"
 
 class App extends lapis.Application
   "/do_something": capture_errors =>
@@ -111,8 +111,8 @@ If you're building a JSON API then another method is provided,
 `capture_errors_json`, which renders the errors in a JSON object like so:
 
 ```lua
-local lapis = require("lapis")
-local app_helpers = require("lapis.application")
+local lapis = require("kong-lapis")
+local app_helpers = require("kong-lapis.application")
 
 local capture_errors_json, yield_error = app_helpers.capture_errors_json, app_helpers.yield_error
 
@@ -124,7 +124,7 @@ end))
 ```
 
 ```moon
-import capture_errors_json, yield_error from require "lapis.application"
+import capture_errors_json, yield_error from require "kong-lapis.application"
 
 class App extends lapis.Application
   "/": capture_errors_json =>
@@ -148,8 +148,8 @@ error, otherwise all the arguments are returned from the function unchanged.
 idiom.
 
 ```lua
-local lapis = require("lapis")
-local app_helpers = require("lapis.application")
+local lapis = require("kong-lapis")
+local app_helpers = require("kong-lapis.application")
 
 local capture_errors, assert_error = app_helpers.capture_errors, app_helpers.assert_error
 
@@ -163,7 +163,7 @@ end))
 ```
 
 ```moon
-import capture_errors, assert_error from require "lapis.application"
+import capture_errors, assert_error from require "kong-lapis.application"
 
 class App extends lapis.Application
   "/": capture_errors =>
