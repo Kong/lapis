@@ -11,7 +11,7 @@ local: build
 	luarocks make --force --local
 
 global: build
-	sudo luarocks make kong-lapis-1.5.2-1.rockspec
+	sudo luarocks make kong-lapis-1.5.3-1.rockspec
 
 build:
 	moonc kong-lapis

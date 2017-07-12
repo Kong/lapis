@@ -1,9 +1,9 @@
 package = "kong-lapis"
-version = "1.5.2-1"
+version = "1.5.3-1"
 
 source = {
 	url = "git://github.com/Mashape/kong-lapis.git",
-	tag = "v1.5.2",
+	tag = "v1.5.3",
 }
 
 description = {
@@ -20,8 +20,6 @@ dependencies = {
 	"etlua",
 	"loadkit",
 	"lpeg",
-	"lua-cjson",
-	"luaossl",
 	"luafilesystem",
 	"luasocket",
 	"mimetypes",

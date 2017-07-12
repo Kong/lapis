@@ -122,6 +122,13 @@ return {
     ["."] = {
       "ngx"
     },
-    ["kong-lapis/views"] = html_builer
+    ["lapis/html"] = {
+      'raw',
+      'html'
+    },
+    ["lapis/request"] = {
+      'raw'
+    },
+    ["lapis/views"] = html_builer
   }
 }
