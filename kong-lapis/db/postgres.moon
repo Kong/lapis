@@ -18,11 +18,11 @@ import
   from require "kong-lapis.db.base"
 
 array = (t) ->
-  import PostgresArray from require "pgmoon-mashape.arrays"
+  import PostgresArray from require "pgmoon.arrays"
   PostgresArray t
 
 is_array = (v) ->
-  import PostgresArray from require "pgmoon-mashape.arrays"
+  import PostgresArray from require "pgmoon.arrays"
   getmetatable(v) == PostgresArray.__base
 
 _is_encodable = (item) ->
@@ -48,7 +48,7 @@ BACKENDS = {
       pgmoon = ngx and ngx.ctx.pgmoon or pgmoon_conn
 
       unless pgmoon
-        import Postgres from require "pgmoon-mashape"
+        import Postgres from require "pgmoon"
         pgmoon = Postgres pg_config
         assert pgmoon\connect!
 
@@ -139,7 +139,7 @@ escape_literal = (val) ->
         return "(#{concat escaped_items, ", "})"
 
       if is_array val
-        import encode_array from require "pgmoon-mashape.arrays"
+        import encode_array from require "pgmoon.arrays"
         return encode_array val, escape_literal
 
       return val[1] if is_raw val

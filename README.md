@@ -43,7 +43,9 @@ busted spec_mysql
 ```
 
 # Changelog
-  		  
+
+* 1.5.4 — 2017-07-19 — [Mashape fork] Switched from `pgmoon-mashape`
+  back to `pgmoon`.
 * 1.5.3 — 2017-07-12 — [Mashape fork] Removed `lua-cjson` and
   `luaossl` dependency from `.rockspec`.  		  
 * 1.5.2 — 2017-07-07 — [Mashape fork] Renamed to `kong-lapis`,

@@ -17,7 +17,7 @@ connections to the server are automatically pooled for optimal performance.
 
 Depending on which database you use, a different library is used:
 
-[pgmoon-mashape](https://github.com/Mashape/pgmoon) is the driver used to run
+[pgmoon](https://github.com/leafo/pgmoon) is the driver used to run
 PostgreSQL queries. It has the advantage of being able to be used within
 OpenResty's cosocket API in addition to on the command line using LuaSocket's
 synchronous API.

@@ -15,13 +15,13 @@ end
 local array
 array = function(t)
   local PostgresArray
-  PostgresArray = require("pgmoon-mashape.arrays").PostgresArray
+  PostgresArray = require("pgmoon.arrays").PostgresArray
   return PostgresArray(t)
 end
 local is_array
 is_array = function(v)
   local PostgresArray
-  PostgresArray = require("pgmoon-mashape.arrays").PostgresArray
+  PostgresArray = require("pgmoon.arrays").PostgresArray
   return getmetatable(v) == PostgresArray.__base
 end
 local _is_encodable
@@ -53,7 +53,7 @@ local BACKENDS = {
       local pgmoon = ngx and ngx.ctx.pgmoon or pgmoon_conn
       if not (pgmoon) then
         local Postgres
-        Postgres = require("pgmoon-mashape").Postgres
+        Postgres = require("pgmoon").Postgres
         pgmoon = Postgres(pg_config)
         assert(pgmoon:connect())
         if ngx then
@@ -179,7 +179,7 @@ escape_literal = function(val)
     end
     if is_array(val) then
       local encode_array
-      encode_array = require("pgmoon-mashape.arrays").encode_array
+      encode_array = require("pgmoon.arrays").encode_array
       return encode_array(val, escape_literal)
     end
     if is_raw(val) then
