@@ -1,9 +1,9 @@
 package = "kong-lapis"
-version = "1.8.1.1-1"
+version = "1.8.1.2-1"
 
 source = {
 	url = "git://github.com/Kong/lapis.git",
-	branch = "v1.8.1.1"
+	branch = "v1.8.2.1"
 }
 
 description = {
@@ -22,6 +22,7 @@ dependencies = {
 	"luasocket",
 	"mimetypes",
 	"pgmoon",
+	"lua-resty-openssl",
 }
 
 build = {

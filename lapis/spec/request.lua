@@ -167,7 +167,7 @@ mock_request = function(app_cls, url, opts)
       return ngx.print("\n")
     end,
     md5 = function(str)
-      local digest = require("openssl.digest")
+      local digest = require("resty.openssl.digest")
       return hex((digest.new("md5")):final(str))
     end,
     header = out_headers,

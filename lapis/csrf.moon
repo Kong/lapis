@@ -2,7 +2,7 @@
 
 json = require "cjson"
 import encode_base64, encode_with_secret, decode_with_secret from require "lapis.util.encoding"
-openssl_rand = require "openssl.rand"
+openssl_rand = require "resty.openssl.rand"
 
 config = require"lapis.config".get!
 cookie_name = "#{config.session_name}_token"
