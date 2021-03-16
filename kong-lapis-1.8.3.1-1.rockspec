@@ -1,30 +1,27 @@
-package = "lapis"
-version = "dev-1"
+package = "kong-lapis"
+version = "1.8.3.1-1"
 
 source = {
-	url = "git://github.com/leafo/lapis.git"
+	url = "git://github.com/Kong/lapis.git",
+	branch = "v1.8.3.1"
 }
 
 description = {
-	summary = "A web framework for MoonScript & Lua",
-	homepage = "http://leafo.net/lapis",
-	maintainer = "Leaf Corcoran <leafot@gmail.com>",
+	summary = "A fork of leafo/lapis for Kong",
+	maintainer = "Thibault Charbonnier <thibaultcha@me.com>",
 	license = "MIT"
 }
 
 dependencies = {
-	"lua",
-
 	"ansicolors",
 	"date",
 	"etlua",
 	"loadkit",
 	"lpeg",
-	"lua-cjson",
-	"luaossl",
 	"luafilesystem",
 	"luasocket",
 	"pgmoon",
+	"lua-resty-openssl",
 }
 
 build = {
@@ -113,4 +110,3 @@ build = {
 		bin = { "bin/lapis" }
 	},
 }
-
