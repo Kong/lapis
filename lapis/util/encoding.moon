@@ -2,7 +2,7 @@
 local encode_base64, decode_base64, hmac_sha1
 
 config = require"lapis.config".get!
-openssl_hmac = require "openssl.hmac"
+openssl_hmac = require "resty.openssl.hmac"
 
 if ngx
   {:encode_base64, :decode_base64, :hmac_sha1} = ngx

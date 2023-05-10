@@ -143,7 +143,7 @@ mock_request = (app_cls, url, opts={}) ->
       ngx.print "\n"
 
     md5: (str) ->
-      digest = require "openssl.digest"
+      digest = require "resty.openssl.digest"
       hex((digest.new "md5")\final str)
 
     header: out_headers
