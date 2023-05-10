@@ -178,7 +178,8 @@ class Application
 
     -- this will hold both paths and route names to prevent them from being
     -- redeclared by paths lower in precedence
-    filled_routes = {}
+    filled_route_names = {}
+    filled_route_paths = {}
 
     each_route @, true, (path, handler) ->
       route_name, path_string = if type(path) == "table"
@@ -187,11 +188,11 @@ class Application
         nil, path
 
       if route_name
-        return if filled_routes[route_name]
-        filled_routes[route_name] = true
+        return if filled_route_names[route_name]
+        filled_route_names[route_name] = true
 
-      return if filled_routes[path_string]
-      filled_routes[path_string] = true
+      return if filled_route_paths[path_string]
+      filled_route_paths[path_string] = true
 
       @router\add_route path, @wrap_handler handler
 
@@ -440,4 +441,3 @@ json_params = (fn) ->
   :capture_errors, :capture_errors_json
   :json_params, :assert_error, :yield_error
 }
-

@@ -4,7 +4,7 @@ do
   local _obj_0 = require("lapis.util.encoding")
   encode_base64, encode_with_secret, decode_with_secret = _obj_0.encode_base64, _obj_0.encode_with_secret, _obj_0.decode_with_secret
 end
-local openssl_rand = require("openssl.rand")
+local openssl_rand = require("resty.openssl.rand")
 local config = require("lapis.config").get()
 local cookie_name = tostring(config.session_name) .. "_token"
 local generate_token
