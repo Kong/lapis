@@ -1,9 +1,9 @@
 package = "kong-lapis"
-version = "1.14.0.1-1"
+version = "1.14.0.2-1"
 
 source = {
   url = "git+https://github.com/Kong/lapis.git",
-  branch = "v1.14.0.1",
+  branch = "v1.14.0.2",
 }
 
 description = {
