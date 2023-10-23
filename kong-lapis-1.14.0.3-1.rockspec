@@ -19,7 +19,7 @@ dependencies = {
   "loadkit",
   "lpeg",
   "luasocket",
-  "pgmoon",
+  "kong-pgmoon",
   "lua-resty-openssl",
 }
 
