@@ -6,6 +6,7 @@ jobs:
   # this runs the tests in the docker image against live postgres & mysql
   # and openresty
   docker:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +24,7 @@ jobs:
 
   # this runs all generic lua tests
   test:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     strategy:
       fail-fast: false
       matrix:
